@@ -1,0 +1,27 @@
+name: Update and Write Properties
+description: Write properties to a properties file.
+author: Anbazhagan Natarajan
+branding:
+  icon: 'edit'
+  color: 'blue'
+inputs:
+  source_path:
+    description: 'The path to the source file to be copied.'
+    required: true
+  target_path:
+    description: 'The path to the target properties file.'
+    required: true
+  properties:
+    description: 'The property keys you want to write. Accepts an array using comma separator.'
+    required: true
+  values:
+    description: 'The property values you want to write (same order as the keys). Accepts an array using comma separator.'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.source_path }}
+    - ${{ inputs.target_path }}
+    - ${{ inputs.properties }}
+    - ${{ inputs.values }}
